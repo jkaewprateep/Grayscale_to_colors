@@ -1,9 +1,9 @@
 # Grayscale_to_colors
-Convert grayscales image back to colors
+Convert grayscales image back to colors, there are many discussion about recovers of the image data from previous lossy method or path fullfilled of the image from previous data or database patterns. Consider the gary_scale image is a lossy image created from 'tf.image.rgb_to_grayscale()' had result as [ width x height x 1 channel ] and original or target recovery has data [ width x height x 3 channels ].
 
 ## Load an image ##    
 
-Using Tensorflow load image and decode as jpg, scales as gray image from ( width x height x channel ) to ( width x height x 1 channel )
+Using Tensorflow load image and decode as jpg, scales as gray image from ( width x height x channel ) to ( width x height x 1 channel ), some decoder from the experiment set required you setup the correct ski-image and python cache and sometimes you may found error using experiment function. The experiment functions is avioded to use in production environments and it can be substitude by updated of the external program.
 ```
 file = "F:\\Pictures\\actor-Ploy\\119282942.jpg
 image = tf.io.read_file( file )
