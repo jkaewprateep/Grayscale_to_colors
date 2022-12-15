@@ -1,5 +1,6 @@
 # Grayscale_to_colors
-Convert grayscales image back to colors, there are many discussion about recovers of the image data from previous lossy method or path fullfilled of the image from previous data or database patterns. Consider the gary_scale image is a lossy image created from 'tf.image.rgb_to_grayscale()' had result as [ width x height x 1 channel ] and original or target recovery has data [ width x height x 3 channels ].
+
+Convert grayscales image back to colors, there are many discussion about recovers of the image data from previous lossy method or path fullfilled of the image from previous data or database patterns. Consider the gary_scale image is a lossy image created from 'tf.image.rgb_to_grayscale()' had result as [ width x height x 1 channel ] and original or target recovery has data [ width x height x 1 channel ].
 
 ## Load an image ##    
 
@@ -13,7 +14,7 @@ grayscale_image = tf.image.rgb_to_grayscale( image )
 
 ## Crop an image ##  
 
-Using Tensorflow crop an image, convert to image object to next presentation layer
+Using Tensorflow crop an image, convert to image object to next presentation layer. The result from tf.image.crop_to_bounding_box( ) has 4 dimensions because they are continouse process and operation with the array sizes [ 1, width , height, channel ] possible to many of target function output matrixes. The array to image conversion is required because we do operations on the image input and sometimes those inputs are from many sources and scales ploting with out standardized of data may see black or white colors image output and none scales data are estimate. Power of calculation saved by removed unranges data.
 ```
 cropped_image = image_1 =  tf.image.crop_to_bounding_box(image, 0, 0, 50, 50)
 cropped_grayscale_image = image_2 = tf.image.rgb_to_grayscale( cropped_image )
@@ -28,7 +29,8 @@ cropped_grayscale_image = tf.keras.preprocessing.image.array_to_img( cropped_gra
 
 ## Create dataset ##  
 
-Using simple loop to extract each pixel into dataset, can be use as model dataset later
+Using simple loop to extract each pixel into dataset, can be use as model dataset later. Preparing input data from original data and grap_scale conversion result data, it is only dataframe or temporary table data mapping but gray_scale converted image is losses recovered from loss contast image is scales functions but the significant data revoery is shape and backgrounds. 
+
 ``` dataset = { "RGB": [], "BW": [] } 
 for i in range( cropped_image_width ) :
 	for j in range( cropped_image_height ) :
@@ -45,7 +47,8 @@ for i in range( cropped_image_width ) :
 
 ## Create Lookup Vocaburary ##  
 
-Using Tensorflow LookUp create Lookup table or vocabrary
+Using Tensorflow LookUp create Lookup table or vocabrary, the vocaburary is unique key and index and the duplicated key results ambigious result return, it required to be unique key.
+
 ```
 data = tf.constant([ dataset["BW"] ])
 layer = tf.keras.layers.IntegerLookup()
@@ -55,7 +58,8 @@ vocab = layer.get_vocabulary()
 
 ## Create re-colors image from gray-scale image ##  
 
-Using Tensorflow create new image from grayscale colors to colors
+Using Tensorflow create new image from grayscale colors to colors, mapping of the gary scale image color to the vocaburary or the temporary table and normalized for the results.
+
 ```
 layer = tf.keras.layers.IntegerLookup(vocabulary=vocab)
 image_3 = tf.zeros([ 50, 50, 3]).numpy()
